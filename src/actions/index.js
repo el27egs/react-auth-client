@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-import { AUTH_USER, UNAUTH_USER } from './types';
+import {
+  AUTH_USER,
+  UNAUTH_USER,
+  AUTH_ERROR
+} from './types';
 
 const URL = 'http://localhost:3000';
 
@@ -20,7 +24,14 @@ export function signinUser({ email, password }) {
       })
       .catch( () => {
         // if req is bad, show error to user
-
+        dispatch(authError('Incorrect Email or Password'));
       });
   }
+}
+
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error
+  };
 }
