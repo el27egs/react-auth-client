@@ -5,7 +5,6 @@ import * as actions from '../../actions';
 
 class Signin extends Component {
   handleFormSubmit({ email, password }) {
-    console.log(email, password);
     // signinUser is ActionCreator:
     this.props.signinUser({ email, password });
   }
@@ -20,7 +19,7 @@ class Signin extends Component {
     }
   }
 
-  render(){
+  render() {
     const { handleSubmit, fields: { email, password }} = this.props;
 
     return(
@@ -32,7 +31,7 @@ class Signin extends Component {
           </fieldset>
           <fieldset className="form-group">
             <label>Password:</label>
-            <input {...password} className="form-control"/>
+            <input {...password} type="password" className="form-control"/>
           </fieldset>
           {this.renderAlert()}
           <button action="submit" className="btn btn-primary">Sign In</button>
