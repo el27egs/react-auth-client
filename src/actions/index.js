@@ -35,3 +35,10 @@ export function authError(error) {
     payload: error
   };
 }
+
+export function signoutUser() {
+  // delete token from localStorage:
+  localStorage.removeItem('token');
+  // and set this.state.authenticated to false:
+  return { type: UNAUTH_USER };
+}
