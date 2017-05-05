@@ -16,6 +16,7 @@ class Signup extends Component {
           <label>Email:</label>
           {/* ...email gives control over this input to reduxForm */}
           <input className="form-control" {...email} />
+          {email.touched && email.error && <div className="error">{email.error}</div>}
         </fieldset>
         <fieldset className="form-group">
           <label>Password:</label>
@@ -29,6 +30,7 @@ class Signup extends Component {
           <label>Confirm Password:</label>
           {/* ...passwordConfirm gives control over this input to reduxForm */}
           <input className="form-control" type="password" {...passwordConfirm} />
+          {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>}
         </fieldset>
         <button action="submit" className="btn btn-primary">Do</button>
       </form>
@@ -37,10 +39,20 @@ class Signup extends Component {
 }
 
 function validate(formProps) {
-  // this obj will contain any errors found in form fields:
+  // will contain any errors found in form fields:
   const errors = {};
 
-  console.log(formProps);
+  if (!formProps.email) {
+    errors.email = 'Please enter an email.'
+  }
+
+  if (!formProps.password) {
+    errors.password = 'Please enter a password.'
+  }
+
+  if (!formProps.passwordConfirm) {
+    errors.passwordConfirm = 'Please reenter your email.'
+  }
 
   if (formProps.password !== formProps.passwordConfirm) {
     errors.password = 'Password and Confirm Password fields must match.';
