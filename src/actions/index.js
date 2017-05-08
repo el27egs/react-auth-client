@@ -54,3 +54,15 @@ export function signoutUser() {
   // and set this.state.authenticated to false:
   return { type: UNAUTH_USER };
 }
+
+export function fetchMessage() {
+  return function(dispatch) {
+    // pass token along with get req:
+    axios.get(URL, {
+      headers: { authorization: localStorage.getItem('token') }
+    })
+      .then( response => {
+        console.log(response);
+      });
+  }
+}
